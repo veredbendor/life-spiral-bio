@@ -2,6 +2,14 @@
 
 A biography journey application that helps users capture and preserve their life stories through a guided, step-by-step process.
 
+## Current Stage: Concept MVP
+
+**Voice-to-Story**: Record a memory, get a written biography snippet.
+
+Users record a short audio/video clip sharing a life moment. The app transcribes the recording and uses AI to transform it into polished narrative prose - preserving the storyteller's voice while crafting it into a biography snippet.
+
+See [docs/CONCEPT.md](docs/CONCEPT.md) for full details and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for software design.
+
 ## Tech Stack
 
 - **Frontend**: Next.js 16, React 19, Tailwind CSS, shadcn/ui
@@ -19,7 +27,7 @@ A biography journey application that helps users capture and preserve their life
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/life-spiral-bio.git
+   git clone https://github.com/veredbendor/life-spiral-bio.git
    cd life-spiral-bio
    ```
 

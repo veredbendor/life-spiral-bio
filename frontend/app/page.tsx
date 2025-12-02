@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
@@ -30,13 +31,15 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col gap-4 w-full max-w-xs pt-4">
-            <Button
-              size="lg"
-              className="w-full bg-[#a89b7e] hover:bg-[#968a6f] text-white rounded-full h-14 text-base font-medium shadow-sm transition-all"
-            >
-              Start My Journey
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link href="/record">
+              <Button
+                size="lg"
+                className="w-full bg-[#a89b7e] hover:bg-[#968a6f] text-white rounded-full h-14 text-base font-medium shadow-sm transition-all"
+              >
+                Start My Journey
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
 
             <button className="text-[#2d2520] hover:text-[#5a5047] text-base font-normal transition-colors">
               Continue Where I Left Off

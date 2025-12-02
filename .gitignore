@@ -48,3 +48,6 @@ coverage/
 # Build
 dist/
 build/
+
+# Working docs (session only)
+docs/IMPLEMENTATION_PLAN.md

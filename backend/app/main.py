@@ -1,34 +1,35 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.v1.router import router as api_router
+from app.core.config import get_settings
+
+settings = get_settings()
+
 app = FastAPI(
-    title="Biography Journey API",
-    description="Backend API for the Biography Journey application",
-    version="0.1.0"
+    title="Life Spiral Bio API",
+    description="Backend API for the Life Spiral Bio application - transform voice recordings into biography snippets",
+    version="0.1.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Include API routes
+app.include_router(api_router)
+
 
 @app.get("/")
 async def root():
-    return {"message": "Welcome to Biography Journey API"}
-
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
-
-
-@app.get("/api/v1/biography/start")
-async def start_journey():
+    """Root endpoint with API information."""
     return {
-        "message": "Your biography journey begins here",
-        "next_step": "Tell us about your earliest memories"
+        "name": settings.app_name,
+        "version": "0.1.0",
+        "docs": "/docs",
+        "health": "/api/v1/health",
     }
