@@ -1,4 +1,13 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8002";
+function getApiBaseUrl(): string {
+  const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8002";
+  // Ensure URL has protocol prefix
+  if (url && !url.startsWith("http://") && !url.startsWith("https://")) {
+    return `https://${url}`;
+  }
+  return url;
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 export interface AboutYouData {
   full_name: string;
