@@ -11,8 +11,11 @@ class Settings(BaseSettings):
     app_env: str = "development"
     debug: bool = True
 
-    # CORS
-    cors_origins: list[str] = ["http://localhost:3001"]
+    # CORS - comma-separated list in env var
+    cors_origins: list[str] = ["http://localhost:3001", "http://localhost:3000"]
+
+    # Railway public URL (set automatically by Railway)
+    railway_public_domain: str = ""
 
     # OpenAI
     openai_api_key: str = ""

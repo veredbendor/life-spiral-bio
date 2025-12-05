@@ -31,7 +31,7 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col gap-4 w-full max-w-xs pt-4">
-            <Link href="/record">
+            <Link href="/questionnaire/about">
               <Button
                 size="lg"
                 className="w-full bg-[#a89b7e] hover:bg-[#968a6f] text-white rounded-full h-14 text-base font-medium shadow-sm transition-all"
