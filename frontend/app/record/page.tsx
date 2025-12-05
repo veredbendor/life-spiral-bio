@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -12,11 +12,21 @@ import { AudioPreview } from "@/features/recording/components/AudioPreview";
 import { LoadingSpinner } from "@/features/shared/components/LoadingSpinner";
 import { processRecording } from "@/features/recording/api";
 import { ProcessResponse } from "@/lib/api-client";
+import { getPromptById } from "@/lib/prompts";
 
 type PageState = "record" | "preview" | "processing" | "result";
 
 export default function RecordPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Get prompt from URL params
+  const sectionId = searchParams.get("section");
+  const promptId = searchParams.get("prompt");
+  const prompt = sectionId && promptId ? getPromptById(sectionId, promptId) : null;
+
+  // Determine back URL
+  const backUrl = sectionId ? `/questionnaire/${sectionId}` : "/";
   const {
     state: recorderState,
     audioBlob,
@@ -63,7 +73,7 @@ export default function RecordPage() {
       {/* Header */}
       <div className="w-full max-w-md mb-8">
         <Link
-          href="/"
+          href={backUrl}
           className="inline-flex items-center text-[#5a5047] hover:text-[#2d2520] transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -123,8 +133,11 @@ export default function RecordPage() {
           <>
             <div className="text-center space-y-3 mb-8">
               <h1 className="text-3xl font-serif text-[#2d2520]">
-                Share Your Memory
+                {prompt ? prompt.text : "Share Your Memory"}
               </h1>
+              {prompt?.hint && (
+                <p className="text-[#5a5047] italic text-sm">{prompt.hint}</p>
+              )}
               <p className="text-[#5a5047]">
                 {hasRecording
                   ? "Review your recording or re-record"

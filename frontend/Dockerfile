@@ -19,6 +19,10 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Build arg for API URL (set in Railway)
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
 RUN pnpm build
 
 # Runner stage
